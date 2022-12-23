@@ -13,13 +13,12 @@ Favorito.init(
       type: S.INTEGER,
       allowNull: false,
     },
-
     nombre: {
       type: S.STRING,
       allowNull: false,
     },
     imagen: {
-      type: S.ARRAY(S.STRING),
+      type: S.STRING,
       allowNull: false,
     },
   },

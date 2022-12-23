@@ -1,10 +1,10 @@
 const express = require("express");
 const routerUsers = express.Router();
-
 const { User } = require("../models");
 const { validarAuth } = require("../middlewares/auth");
 const { generateToken, validateToken } = require("../config/token");
 
+//registro
 routerUsers.post("/registro", (req, res) => {
   User.create(req.body).then((user) => {
     console.log(user, "USER");
@@ -12,6 +12,7 @@ routerUsers.post("/registro", (req, res) => {
   });
 });
 
+//login
 routerUsers.post("/login", (req, res) => {
   const { email, contraseña } = req.body;
 
@@ -23,7 +24,7 @@ routerUsers.post("/login", (req, res) => {
       const payload = {
         email: user.email,
         nombre: user.nombre,
-        admin: user.admin,
+
         id: user.id,
       };
 
@@ -36,9 +37,19 @@ routerUsers.post("/login", (req, res) => {
   });
 });
 
+//logout
 routerUsers.post("/logout", (req, res) => {
   res.clearCookie("token");
   res.sendStatus(204);
+});
+
+//traigo todos los usuarios registrados
+routerUsers.get("/usuarios", (req, res) => {
+  User.findAll()
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => console.log(err, "ERROR"));
 });
 
 module.exports = routerUsers;
