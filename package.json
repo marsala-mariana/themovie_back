@@ -12,6 +12,10 @@
     "url": "git+https://github.com/marsala-mariana/themoviedatabase.git"
   },
   "author": "marianamarsala",
+  "engines": {
+    "node": "16.17.0",
+    "npm": "8.15.0"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/marsala-mariana/themoviedatabase/issues"
